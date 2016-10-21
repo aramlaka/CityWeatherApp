@@ -58,7 +58,7 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> {
         TextView tempText = holder.temperatureText;
         TextView updatedDateText = holder.updatedDateText;
 
-        String cityCountryName = city.getName() + ", " + city.getCountry();
+        String cityCountryName = city.getCityName() + ", " + city.getCountry();
 
         cityNameText.setText(cityCountryName);
         //tempText.setText(city.getForecasts().get(0).getTemperature());

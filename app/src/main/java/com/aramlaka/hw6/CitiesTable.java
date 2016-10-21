@@ -14,7 +14,7 @@ public class CitiesTable {
     public static final String CITY_TEMPERATURE = "temperature";
     public static final String CITY_FAVORITE = "favorite";
 
-    private static void onCreate(SQLiteDatabase db) {
+    public static void onCreate(SQLiteDatabase db) {
         StringBuilder sb = new StringBuilder();
 
         sb.append("CREATE TABLE " + CitiesTable.TABLE_NAME + "(");

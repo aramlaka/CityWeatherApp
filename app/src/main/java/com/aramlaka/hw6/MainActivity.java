@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static DataManager dm;
     ArrayList<City> cities;
 
     @Override
@@ -24,27 +25,9 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        cities = new ArrayList<>();
+        dm = new DataManager(this);
 
-        for (int i = 0; i < 10; i++) {
-            City city = new City();
-
-            city.setCountry("Country Numbah " + (i + 1));
-            city.setName("City #" + (i+1));
-
-            cities.add(city);
-        }
-
-        City city1 = new City();
-        city1.setName("Durban");
-        city1.setCountry("SA");
-
-        City city2 = new City();
-        city2.setName("Raleigh");
-        city2.setCountry("NC");
-
-        cities.add(city1);
-        cities.add(city2);
+        cities = dm.getAllCities();
 
         RecyclerView rvCities = (RecyclerView) findViewById(R.id.rvCities);
         CityAdapter adapter = new CityAdapter(this, cities);

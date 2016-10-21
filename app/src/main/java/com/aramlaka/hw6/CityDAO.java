@@ -39,8 +39,8 @@ public class CityDAO {
         return db.delete(CitiesTable.TABLE_NAME, CitiesTable.CITY_ID + "=" + city.get_id(), null) > 0;
     }
 
-    public List<City> getAll() {
-        List<City> cities = new ArrayList<City>();
+    public ArrayList<City> getAll() {
+        ArrayList<City> cities = new ArrayList<City>();
 
         Cursor c = db.query(CitiesTable.TABLE_NAME,
                 new String[]{CitiesTable.CITY_ID, CitiesTable.CITY_NAME, CitiesTable.CITY_COUNTRY,
