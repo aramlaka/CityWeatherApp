@@ -47,7 +47,7 @@ public class CityDAO {
                 CitiesTable.CITY_TEMPERATURE, CitiesTable.CITY_FAVORITE},
                 null, null, null, null, CitiesTable.CITY_FAVORITE);
 
-        if (c != null) {
+        if (c != null && c.getCount() > 0) {
             c.moveToFirst();
 
             do {

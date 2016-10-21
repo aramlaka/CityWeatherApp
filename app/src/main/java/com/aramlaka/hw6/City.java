@@ -13,7 +13,12 @@ public class City {
     private String temperature;
     private int favorite;
 
-    public City() {
+    public City () {
+        this._id = 0;
+        this.cityName = null;
+        this.country = null;
+        this.temperature = null;
+        this.favorite = 0;
     }
 
     public long get_id() {

@@ -5,4 +5,5 @@
     <string name="countryHint">Country (i.e. US)</string>
     <string name="search">Search</string>
     <string name="action_preferences">Preferences</string>
+    <string name="noCities">There are no cities to display. Search a city from the search box and save.</string>
 </resources>

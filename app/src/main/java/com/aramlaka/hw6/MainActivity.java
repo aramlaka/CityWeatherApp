@@ -10,12 +10,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static DataManager dm;
+    public static DataManager dm;
     ArrayList<City> cities;
 
     @Override
@@ -33,6 +34,11 @@ public class MainActivity extends AppCompatActivity {
         CityAdapter adapter = new CityAdapter(this, cities);
         rvCities.setAdapter(adapter);
         rvCities.setLayoutManager(new LinearLayoutManager(this));
+
+        if (cities.size() > 0) {
+            rvCities.setVisibility(View.VISIBLE);
+            findViewById(R.id.noCitiesText).setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override
@@ -55,5 +61,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        dm.close();
+        super.onDestroy();
     }
 }

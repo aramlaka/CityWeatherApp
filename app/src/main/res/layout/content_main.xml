@@ -13,8 +13,59 @@
     tools:context="com.aramlaka.hw6.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:layout_below="@+id/cityEdit"
+            android:layout_alignLeft="@+id/cityEdit"
+            android:layout_alignStart="@+id/cityEdit"
+            android:id="@+id/countryEdit"
+            android:hint="@string/countryHint"
+            android:layout_marginTop="5dp" />
+
+        <EditText
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/cityEdit"
+            android:hint="@string/cityHint"
+            android:layout_marginTop="15dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:text="@string/search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/searchButton"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:layout_below="@+id/countryEdit"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:text="@string/noCities"
+            android:layout_height="wrap_content"
+            android:id="@+id/noCitiesText"
+            android:layout_width="300dp"
+            android:layout_marginTop="60dp"
+            android:layout_alignTop="@+id/searchButton"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvCities"
+        android:layout_height="match_parent"
+        android:layout_marginTop="229dp"
+        android:layout_width="match_parent"
+        android:elevation="1dp"
+        android:visibility="invisible"/>
 </RelativeLayout>
