@@ -8,7 +8,6 @@ import java.util.ArrayList;
 /**
  * Created by akhil on 10/20/2016.
  */
-
 public class ForecastUtil {
     public static ArrayList<Forecast> parseJSON(String jsonString) {
         try {

@@ -30,6 +30,20 @@ public class MainActivity extends AppCompatActivity {
 
         cities = dm.getAllCities();
 
+        City city = new City();
+        city.setCityName("Noxville");
+        city.setCountry("ethan");
+        city.setTemperature("temp");
+
+        cities.add(city);
+        cities.add(city);
+        cities.add(city);
+        cities.add(city);
+        cities.add(city);
+        cities.add(city);
+        cities.add(city);
+        cities.add(city);
+
         RecyclerView rvCities = (RecyclerView) findViewById(R.id.rvCities);
         CityAdapter adapter = new CityAdapter(this, cities);
         rvCities.setAdapter(adapter);

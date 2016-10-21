@@ -18,7 +18,7 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
@@ -30,13 +30,13 @@
             android:layout_marginTop="5dp" />
 
         <EditText
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/cityEdit"
             android:hint="@string/cityHint"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
 
@@ -58,13 +58,14 @@
             android:layout_width="300dp"
             android:layout_marginTop="60dp"
             android:layout_alignTop="@+id/searchButton"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal" />
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvCities"
         android:layout_height="match_parent"
-        android:layout_marginTop="229dp"
+        android:layout_marginTop="170dp"
         android:layout_width="match_parent"
         android:elevation="1dp"
         android:visibility="invisible"/>

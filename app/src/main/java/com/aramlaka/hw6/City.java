@@ -1,7 +1,5 @@
 package com.aramlaka.hw6;
 
-import java.util.ArrayList;
-
 /**
  * Created by akhil on 10/20/2016.
  */

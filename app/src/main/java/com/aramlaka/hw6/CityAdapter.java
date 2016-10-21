@@ -35,7 +35,6 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> {
         public TextView temperatureText;
         public TextView updatedDateText;
         public RelativeLayout rl;
-        private Context context;
 
         public ViewHolder(View cityView) {
             super(cityView);
@@ -91,11 +90,37 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> {
 
         @Override
         public boolean onLongClick(View view) {
-            MainActivity.dm.deleteCity(city);
+            removeAt(city);
 
             Toast.makeText(context, city.getCityName() + " has been deleted.", Toast.LENGTH_SHORT).show();
+
+            ((ViewGroup) view.getParent()).removeView(view);
 
             return true;
         }
     }
+
+    public class CityOnClickListener implements View.OnClickListener {
+        private City city;
+        private Context context;
+
+        public CityOnClickListener(City city, Context context) {
+            this.city = city;
+            this.context = context;
+        }
+
+        @Override
+        public void onClick(View view) {
+            //remove
+        }
+    }
+
+    public void removeAt(City city) {
+        MainActivity.dm.deleteCity(city);
+        int index = mCities.indexOf(city);
+        mCities.remove(index);
+        notifyItemRemoved(index);
+        notifyItemRangeChanged(index, mCities.size());
+    }
+
 }
