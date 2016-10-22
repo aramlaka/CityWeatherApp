@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
  */
 public class CitiesTable {
     public static final String TABLE_NAME = "cities";
-    public static final String CITY_ID = "_id";
+    public static final String CITY_ID = "id";
     public static final String CITY_NAME = "city_name";
     public static final String CITY_COUNTRY = "country";
     public static final String CITY_TEMPERATURE = "temperature";
@@ -18,7 +18,7 @@ public class CitiesTable {
         StringBuilder sb = new StringBuilder();
 
         sb.append("CREATE TABLE " + CitiesTable.TABLE_NAME + "(");
-        sb.append(CitiesTable.CITY_ID + " integer primary key autoincrement, ");
+        sb.append(CitiesTable.CITY_ID + " text primary key, ");
         sb.append(CitiesTable.CITY_NAME + " text not null, ");
         sb.append(CitiesTable.CITY_COUNTRY + " text not null, ");
         sb.append(CitiesTable.CITY_TEMPERATURE + " text not null, ");

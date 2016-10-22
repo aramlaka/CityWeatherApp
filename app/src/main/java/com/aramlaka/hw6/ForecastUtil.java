@@ -23,7 +23,18 @@ public class ForecastUtil {
             forecasts = new ArrayList<>();
 
             JSONObject weatherJSONObj = new JSONObject(jsonString);
+            JSONObject cityJson = weatherJSONObj.getJSONObject("city");
             JSONArray hourlyForecast = weatherJSONObj.getJSONArray("list");
+
+            String id, cityName, country, cityTemperature;
+            id = cityJson.getString("id");
+            cityName = cityJson.getString("name");
+            country = cityJson.getString("country");
+
+            city = new City();
+            city.set_id(id);
+            city.setCityName(cityName);
+            city.setCountry(country);
 
             for (int i = 0; i < hourlyForecast.length(); i++) {
                 String time, temperature, iconUrl,
@@ -63,6 +74,10 @@ public class ForecastUtil {
                 forecasts.add(new Forecast(finalTime, temperature, iconUrl,
                         windSpeed, wind, windDirection, condition, humidity,
                         maximumTemp, minimumTemp, pressure));
+
+                if (i == 0) {
+                    city.setTemperature(temperature);
+                }
 
                 return new CityBundle(city, forecasts);
             }

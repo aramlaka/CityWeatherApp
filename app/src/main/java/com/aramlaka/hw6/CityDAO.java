@@ -68,7 +68,7 @@ public class CityDAO {
 
         if (c != null) {
             city = new City();
-            city.set_id(c.getLong(0));
+            city.set_id(c.getString(0));
             city.setCityName(c.getString(1));
             city.setCountry(c.getString(2));
             city.setTemperature(c.getString(3));

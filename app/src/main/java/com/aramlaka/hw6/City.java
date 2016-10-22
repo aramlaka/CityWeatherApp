@@ -5,26 +5,26 @@ package com.aramlaka.hw6;
  */
 
 public class City {
-    private long _id;
+    private String id;
     private String cityName;
     private String country;
     private String temperature;
     private int favorite;
 
     public City () {
-        this._id = 0;
+        this.id = null;
         this.cityName = null;
         this.country = null;
         this.temperature = null;
         this.favorite = 0;
     }
 
-    public long get_id() {
-        return _id;
+    public String get_id() {
+        return id;
     }
 
-    public void set_id(long _id) {
-        this._id = _id;
+    public void set_id(String id) {
+        this.id = id;
     }
 
     public String getCityName() {
@@ -62,7 +62,7 @@ public class City {
     @Override
     public String toString() {
         return "City{" +
-                "_id=" + _id +
+                "id=" + id +
                 ", cityName='" + cityName + '\'' +
                 ", country='" + country + '\'' +
                 ", temperature='" + temperature + '\'' +
