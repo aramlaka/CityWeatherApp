@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class CityWeather extends AppCompatActivity {
+public class CityWeather extends AppCompatActivity implements CityDayAdapter.CityHourSet {
 
     private ArrayList<Forecast> forecasts;
     private City city;
@@ -36,10 +36,6 @@ public class CityWeather extends AppCompatActivity {
 
                 city = cb.getCity();
                 forecasts = cb.getForecasts();
-
-                for (int i = 0; i < forecasts.size(); i++) {
-                    Log.d("debug", forecasts.get(i).toString());
-                }
             }
         }
 
@@ -48,9 +44,14 @@ public class CityWeather extends AppCompatActivity {
         cityText.setText(city.getCityName() + ", " + city.getCountry());
 
         RecyclerView rvDailyCity = (RecyclerView) findViewById(R.id.rvDailyCity);
-        CityDayAdapter adapter = new CityDayAdapter(this, forecasts);
-        rvDailyCity.setAdapter(adapter);
-        rvDailyCity.setLayoutManager(new LinearLayoutManager(this));
+        CityDayAdapter dayAdapter = new CityDayAdapter(this, forecasts, this);
+        rvDailyCity.setAdapter(dayAdapter);
+        rvDailyCity.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+        RecyclerView rvHourCity = (RecyclerView) findViewById(R.id.rvHourlyCity);
+        CityHourAdapter hourAdapter = new CityHourAdapter(this, forecasts.get(0));
+        rvHourCity.setAdapter(hourAdapter);
+        rvHourCity.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
     }
 
     @Override
@@ -75,4 +76,10 @@ public class CityWeather extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void setHourAdapter(Forecast forecast) {
+        RecyclerView rvHourCity = (RecyclerView) findViewById(R.id.rvHourlyCity);
+        CityHourAdapter hourAdapter = new CityHourAdapter(this, forecast);
+        rvHourCity.setAdapter(hourAdapter);
+        rvHourCity.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+    }
 }

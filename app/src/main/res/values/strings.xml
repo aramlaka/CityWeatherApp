@@ -8,4 +8,10 @@
     <string name="noCities">There are no cities to display. Search a city from the search box and save.</string>
     <string name="dailyForecast">Daily forecast for</string>
     <string name="title_activity_city_weather">CityWeather</string>
+    <string name="threeHourly">Three Hourly Forecast on</string>
+    <string name="temperatureLabel">Temperature</string>
+    <string name="conditionText">Condition</string>
+    <string name="pressureLabel">Pressure</string>
+    <string name="humidityLabel">Humidity</string>
+    <string name="windLabel">Wind</string>
 </resources>

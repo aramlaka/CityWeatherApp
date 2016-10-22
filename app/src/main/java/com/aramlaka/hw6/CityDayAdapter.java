@@ -2,12 +2,15 @@ package com.aramlaka.hw6;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -19,10 +22,12 @@ public class CityDayAdapter extends RecyclerView.Adapter<CityDayAdapter.ViewHold
 
     private ArrayList<Forecast> mForecasts;
     private Context mContext;
+    private CityHourSet mCs;
 
-    public CityDayAdapter(Context context, ArrayList<Forecast> forecasts) {
+    public CityDayAdapter(Context context, ArrayList<Forecast> forecasts, CityHourSet cs) {
         mContext = context;
         mForecasts = forecasts;
+        mCs = cs;
     }
 
     private Context getContext() {
@@ -40,7 +45,7 @@ public class CityDayAdapter extends RecyclerView.Adapter<CityDayAdapter.ViewHold
 
             temperatureText = (TextView) cityDayView.findViewById(R.id.tempText);
             dateText = (TextView) cityDayView.findViewById(R.id.dateText);
-            forecastIcon = (ImageView) cityDayView.findViewById(R.id.favoriteButton);
+            forecastIcon = (ImageView) cityDayView.findViewById(R.id.forecastIcon);
             rl = (RelativeLayout) cityDayView.findViewById(R.id.rvDailyCity);
         }
     }
@@ -57,11 +62,24 @@ public class CityDayAdapter extends RecyclerView.Adapter<CityDayAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(CityDayAdapter.ViewHolder holder, int position) {
+        Forecast forecast = mForecasts.get(position);
+;
+        TextView tempText = holder.temperatureText;
+        TextView dateText = holder.dateText;
+        ImageView forecastIcon = holder.forecastIcon;
+        RelativeLayout rl = holder.rl;
 
+        tempText.setText(forecast.getTemperature() + (char) 0x00B0 + " C");
+        dateText.setText(forecast.getTime());
+        Picasso.with(mContext).load(forecast.getIconUrl()).into(forecastIcon);
     }
 
     @Override
     public int getItemCount() {
         return mForecasts.size();
+    }
+
+    public interface CityHourSet {
+        public void setHourAdapter(Forecast forecast);
     }
 }
