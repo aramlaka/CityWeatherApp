@@ -1,10 +1,12 @@
 package com.aramlaka.hw6;
 
+import java.io.Serializable;
+
 /**
  * Created by akhil on 10/20/2016.
  */
 
-public class City {
+public class City implements Serializable {
     private String id;
     private String cityName;
     private String country;

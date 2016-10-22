@@ -6,4 +6,6 @@
     <string name="search">Search</string>
     <string name="action_preferences">Preferences</string>
     <string name="noCities">There are no cities to display. Search a city from the search box and save.</string>
+    <string name="dailyForecast">Daily forecast for</string>
+    <string name="title_activity_city_weather">CityWeather</string>
 </resources>

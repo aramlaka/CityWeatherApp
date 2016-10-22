@@ -1,10 +1,12 @@
 package com.aramlaka.hw6;
 
+import java.io.Serializable;
+
 /**
  * Created by akhil on 10/20/2016.
  */
 
-public class Forecast {
+public class Forecast implements Serializable{
     private String time;
     private String temperature;
     private String iconUrl;

@@ -78,9 +78,9 @@ public class ForecastUtil {
                 if (i == 0) {
                     city.setTemperature(temperature);
                 }
-
-                return new CityBundle(city, forecasts);
             }
+
+            return new CityBundle(city, forecasts);
         } catch (JSONException e) {
             e.printStackTrace();
         } catch (ParseException e) {

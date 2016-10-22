@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements GetForecastJSON.S
     public final static String WEATHER_URL_KEY = "weather_url";
     public final static String CITY_URL = "http://api.openweathermap.org/data/2.5/forecast?q=";
     private final static String API_KEY = "4012b350504085a7a6f9ffacb1b97d97";
+    public final static String CITY_BUNDLE_KEY = "cb_key";
     public static DataManager dm;
     ArrayList<City> cities;
     ArrayList<Forecast> forecasts;
@@ -105,6 +106,10 @@ public class MainActivity extends AppCompatActivity implements GetForecastJSON.S
         if (cityBundle.getForecasts() != null) {
             Log.d("debug", "forecast(0)=" + cityBundle.getForecasts().get(0).toString() + "" +
                     "\ncity=" + cityBundle.getCity().toString());
+
+            Intent intent = new Intent(this, CityWeather.class);
+            intent.putExtra(CITY_BUNDLE_KEY, cityBundle);
+            startActivity(intent);
         }
         else
             Log.d("debug", "ruh roh");
