@@ -32,16 +32,18 @@ public class CityHourAdapter extends RecyclerView.Adapter<CityHourAdapter.ViewHo
     public static class ViewHolder extends RecyclerView.ViewHolder  {
         public TextView temperatureText;
         public TextView dateText;
+        public TextView conditionText;
         public ImageView forecastIcon;
         public RelativeLayout rl;
 
-        public ViewHolder(View cityDayView) {
-            super(cityDayView);
+        public ViewHolder(View cityHourView) {
+            super(cityHourView);
 
-            temperatureText = (TextView) cityDayView.findViewById(R.id.tempText);
-            dateText = (TextView) cityDayView.findViewById(R.id.dateText);
-            forecastIcon = (ImageView) cityDayView.findViewById(R.id.favoriteButton);
-            rl = (RelativeLayout) cityDayView.findViewById(R.id.rvDailyCity);
+            temperatureText = (TextView) cityHourView.findViewById(R.id.tempText);
+            dateText = (TextView) cityHourView.findViewById(R.id.dateText);
+            forecastIcon = (ImageView) cityHourView.findViewById(R.id.favoriteButton);
+            conditionText = (TextView) cityHourView.findViewById(R.id.conditionText);
+            rl = (RelativeLayout) cityHourView.findViewById(R.id.rvDailyCity);
         }
     }
 
@@ -57,7 +59,13 @@ public class CityHourAdapter extends RecyclerView.Adapter<CityHourAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(CityHourAdapter.ViewHolder holder, int position) {
+        Forecast forecast = mForecast;
 
+        TextView tempText = holder.temperatureText;
+        TextView conditionText = holder.conditionText;
+
+        tempText.setText(forecast.getTemperature());
+        conditionText.setText(forecast.getCondition());
     }
 
     @Override

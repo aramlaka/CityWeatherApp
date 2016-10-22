@@ -46,7 +46,7 @@ public class CityDayAdapter extends RecyclerView.Adapter<CityDayAdapter.ViewHold
             temperatureText = (TextView) cityDayView.findViewById(R.id.tempText);
             dateText = (TextView) cityDayView.findViewById(R.id.dateText);
             forecastIcon = (ImageView) cityDayView.findViewById(R.id.forecastIcon);
-            rl = (RelativeLayout) cityDayView.findViewById(R.id.rvDailyCity);
+            rl = (RelativeLayout) cityDayView.findViewById(R.id.rlDailyCity);
         }
     }
 
@@ -72,11 +72,28 @@ public class CityDayAdapter extends RecyclerView.Adapter<CityDayAdapter.ViewHold
         tempText.setText(forecast.getTemperature() + (char) 0x00B0 + " C");
         dateText.setText(forecast.getTime());
         Picasso.with(mContext).load(forecast.getIconUrl()).into(forecastIcon);
+
+        rl.setOnClickListener(new DayCityOnClick(forecast, mCs));
     }
 
     @Override
     public int getItemCount() {
         return mForecasts.size();
+    }
+
+    public class DayCityOnClick implements View.OnClickListener {
+        private Forecast forecast;
+        private CityHourSet cs;
+
+        public DayCityOnClick(Forecast forecast, CityHourSet cs) {
+            this.forecast = forecast;
+            this.cs = cs;
+        }
+
+        @Override
+        public void onClick(View view) {
+            cs.setHourAdapter(forecast);
+        }
     }
 
     public interface CityHourSet {
