@@ -15,8 +15,9 @@ import java.util.Date;
  * Created by akhil on 10/20/2016.
  */
 public class ForecastUtil {
-    public static ArrayList<Forecast> parseJSON(String jsonString) {
+    public static CityBundle parseJSON(String jsonString) {
         ArrayList<Forecast> forecasts = null;
+        City city = null;
 
         try {
             forecasts = new ArrayList<>();
@@ -63,7 +64,7 @@ public class ForecastUtil {
                         windSpeed, wind, windDirection, condition, humidity,
                         maximumTemp, minimumTemp, pressure));
 
-                return forecasts;
+                return new CityBundle(city, forecasts);
             }
         } catch (JSONException e) {
             e.printStackTrace();

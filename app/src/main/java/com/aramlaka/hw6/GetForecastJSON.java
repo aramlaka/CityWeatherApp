@@ -14,7 +14,7 @@ import java.util.ArrayList;
 /**
  * Created by akhil on 10/20/2016.
  */
-public class GetForecastJSON extends AsyncTask<String, Void, ArrayList<Forecast>> {
+public class GetForecastJSON extends AsyncTask<String, Void, CityBundle> {
 
     SetForecast activity;
     ProgressDialog progressDialog;
@@ -25,7 +25,7 @@ public class GetForecastJSON extends AsyncTask<String, Void, ArrayList<Forecast>
     }
 
     @Override
-    protected ArrayList<Forecast> doInBackground(String... params) {
+    protected CityBundle doInBackground(String... params) {
         InputStream in = null;
 
         try {
@@ -63,13 +63,13 @@ public class GetForecastJSON extends AsyncTask<String, Void, ArrayList<Forecast>
     }
 
     @Override
-    protected void onPostExecute(ArrayList<Forecast> forecast) {
+    protected void onPostExecute(CityBundle cityBundle) {
         progressDialog.hide();
-        activity.setForecast(forecast);
+        activity.setForecast(cityBundle);
     }
 
     public interface SetForecast {
-        public void setForecast(ArrayList<Forecast> forecast);
+        public void setForecast(CityBundle cityBundle);
     }
 }
 

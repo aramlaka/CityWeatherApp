@@ -101,9 +101,9 @@ public class MainActivity extends AppCompatActivity implements GetForecastJSON.S
     }
 
     @Override
-    public void setForecast(ArrayList<Forecast> forecasts) {
-        if (forecasts != null)
-            Log.d("debug", "forecast(0)=" + forecasts.get(0).toString());
+    public void setForecast(CityBundle cityBundle) {
+        if (cityBundle.getForecasts() != null)
+            Log.d("debug", "forecast(0)=" + cityBundle.getForecasts().forecasts.get(0).toString());
         else
             Log.d("debug", "ruh roh");
     }
