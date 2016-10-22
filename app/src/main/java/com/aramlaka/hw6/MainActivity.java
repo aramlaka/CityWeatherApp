@@ -1,5 +1,7 @@
 package com.aramlaka.hw6;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,14 +12,20 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements GetForecast.SetForecast {
 
+    public final static String WEATHER_URL_KEY = "weather_url";
+    public final static String CITY_URL = "http://api.openweathermap.org/data/2.5/forecast?q=";
+    private final static String API_KEY = "4012b350504085a7a6f9ffacb1b97d97";
     public static DataManager dm;
     ArrayList<City> cities;
+    ArrayList<Forecast> forecasts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,23 +34,12 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Fetching weather...");
+
         dm = new DataManager(this);
 
         cities = dm.getAllCities();
-
-        City city = new City();
-        city.setCityName("Noxville");
-        city.setCountry("ethan");
-        city.setTemperature("temp");
-
-        cities.add(city);
-        cities.add(city);
-        cities.add(city);
-        cities.add(city);
-        cities.add(city);
-        cities.add(city);
-        cities.add(city);
-        cities.add(city);
 
         RecyclerView rvCities = (RecyclerView) findViewById(R.id.rvCities);
         CityAdapter adapter = new CityAdapter(this, cities);
@@ -53,6 +50,23 @@ public class MainActivity extends AppCompatActivity {
             rvCities.setVisibility(View.VISIBLE);
             findViewById(R.id.noCitiesText).setVisibility(View.INVISIBLE);
         }
+
+        Button searchButton = (Button) findViewById(R.id.searchButton);
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText cityEdit = (EditText) findViewById(R.id.cityEdit);
+                EditText countryEdit = (EditText) findViewById(R.id.countryEdit);
+
+                String city = cityEdit.getText().toString();
+                String country = countryEdit.getText().toString();
+
+                Intent intent = new Intent(MainActivity.this, GetForecast.class);
+                intent.putExtra(WEATHER_URL_KEY, CITY_URL +
+                         city + "," + country +
+                        "&appid=" + API_KEY);
+            }
+        });
     }
 
     @Override
@@ -81,5 +95,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         dm.close();
         super.onDestroy();
+    }
+
+    @Override
+    public void setForecast(ArrayList<Forecast> forecast) {
+
     }
 }

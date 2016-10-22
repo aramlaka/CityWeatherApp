@@ -2,11 +2,10 @@ package com.aramlaka.hw6;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +33,7 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> {
         public TextView cityNameText;
         public TextView temperatureText;
         public TextView updatedDateText;
+        public ImageView favoriteButton;
         public RelativeLayout rl;
 
         public ViewHolder(View cityView) {
@@ -42,6 +42,7 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> {
             cityNameText = (TextView) cityView.findViewById(R.id.cityNameText);
             temperatureText = (TextView) cityView.findViewById(R.id.temperatureText);
             updatedDateText = (TextView) cityView.findViewById(R.id.updatedDateText);
+            favoriteButton = (ImageView) cityView.findViewById(R.id.favoriteButton);
             rl = (RelativeLayout) cityView.findViewById(R.id.rCity);
         }
     }
@@ -63,15 +64,21 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> {
         TextView cityNameText = holder.cityNameText;
         TextView tempText = holder.temperatureText;
         TextView updatedDateText = holder.updatedDateText;
+        ImageView favoriteButton = holder.favoriteButton;
         RelativeLayout rl = holder.rl;
 
         String cityCountryName = city.getCityName() + ", " + city.getCountry();
 
         cityNameText.setText(cityCountryName);
         tempText.setText(city.getTemperature());
-        updatedDateText.setText("wow");
+        updatedDateText.setText(city.getTemperature());
 
-        rl.setOnLongClickListener(new CityLongClickListener(city, mContext));
+        if (city.getFavorite() == 1) {
+            favoriteButton.setImageResource(android.R.drawable.star_big_on);
+        }
+
+        rl.setOnLongClickListener(new CityOnLongClick(city, mContext));
+        favoriteButton.setOnClickListener(new FavoriteButtonOnClick(city));
     }
 
     @Override
@@ -79,11 +86,11 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> {
         return mCities.size();
     }
 
-    public class CityLongClickListener implements View.OnLongClickListener {
+    public class CityOnLongClick implements View.OnLongClickListener {
         private City city;
         private Context context;
 
-        public CityLongClickListener(City city, Context context) {
+        public CityOnLongClick(City city, Context context) {
             this.city = city;
             this.context = context;
         }
@@ -100,11 +107,11 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> {
         }
     }
 
-    public class CityOnClickListener implements View.OnClickListener {
+    public class CityOnClickOnClick implements View.OnClickListener {
         private City city;
         private Context context;
 
-        public CityOnClickListener(City city, Context context) {
+        public CityOnClickOnClick(City city, Context context) {
             this.city = city;
             this.context = context;
         }
@@ -115,6 +122,29 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> {
         }
     }
 
+    public class FavoriteButtonOnClick implements View.OnClickListener {
+        private City city;
+
+        public FavoriteButtonOnClick(City city) {
+            this.city = city;
+        }
+
+        @Override
+        public void onClick(View view) {
+            ImageView favoriteButton = (ImageView) view;
+
+            if (city.getFavorite() == 0) {
+                favoriteButton.setImageResource(android.R.drawable.star_big_on);
+                city.setFavorite(1);
+            } else {
+                favoriteButton.setImageResource(android.R.drawable.star_off);
+                city.setFavorite(0);
+            }
+
+            MainActivity.dm.updateCity(city);
+        }
+    }
+
     public void removeAt(City city) {
         MainActivity.dm.deleteCity(city);
         int index = mCities.indexOf(city);
@@ -122,5 +152,4 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> {
         notifyItemRemoved(index);
         notifyItemRangeChanged(index, mCities.size());
     }
-
 }

@@ -14,7 +14,6 @@ import java.util.ArrayList;
 /**
  * Created by akhil on 10/20/2016.
  */
-
 public class GetForecast extends AsyncTask<String, Void, ArrayList<Forecast>> {
 
     SetForecast activity;
