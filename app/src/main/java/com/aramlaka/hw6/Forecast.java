@@ -7,14 +7,33 @@ package com.aramlaka.hw6;
 public class Forecast {
     private String time;
     private String temperature;
-    private String condition;
-    private String pressure;
-    private String humidity;
-    private String windSpeed;
-    private String windDir;
     private String iconUrl;
+    private String windSpeed;
+    private String windDirection;
+    private String wind;
+    private String condition;
+    private String humidity;
+    private String maximumTemp;
+    private String minimumTemp;
+    private String pressure;
 
     public Forecast() {
+    }
+
+    public Forecast(String time, String temperature, String iconUrl, String windSpeed,
+                    String windDirection, String wind, String condition, String humidity,
+                    String maximumTemp, String minimumTemp, String pressure) {
+        this.time = time;
+        this.temperature = temperature;
+        this.iconUrl = iconUrl;
+        this.windSpeed = windSpeed;
+        this.windDirection = windDirection;
+        this.wind = wind;
+        this.condition = condition;
+        this.humidity = humidity;
+        this.maximumTemp = maximumTemp;
+        this.minimumTemp = minimumTemp;
+        this.pressure = pressure;
     }
 
     public String getTime() {
@@ -33,28 +52,12 @@ public class Forecast {
         this.temperature = temperature;
     }
 
-    public String getCondition() {
-        return condition;
+    public String getIconUrl() {
+        return iconUrl;
     }
 
-    public void setCondition(String condition) {
-        this.condition = condition;
-    }
-
-    public String getPressure() {
-        return pressure;
-    }
-
-    public void setPressure(String pressure) {
-        this.pressure = pressure;
-    }
-
-    public String getHumidity() {
-        return humidity;
-    }
-
-    public void setHumidity(String humidity) {
-        this.humidity = humidity;
+    public void setIconUrl(String iconUrl) {
+        this.iconUrl = iconUrl;
     }
 
     public String getWindSpeed() {
@@ -65,19 +68,76 @@ public class Forecast {
         this.windSpeed = windSpeed;
     }
 
-    public String getWindDir() {
-        return windDir;
+    public String getWindDirection() {
+        return windDirection;
     }
 
-    public void setWindDir(String windDir) {
-        this.windDir = windDir;
+    public void setWindDirection(String windDirection) {
+        this.windDirection = windDirection;
     }
 
-    public String getIconUrl() {
-        return iconUrl;
+    public String getWind() {
+        return wind;
     }
 
-    public void setIconUrl(String iconUrl) {
-        this.iconUrl = iconUrl;
+    public void setWind(String wind) {
+        this.wind = wind;
+    }
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
+
+    public String getHumidity() {
+        return humidity;
+    }
+
+    public void setHumidity(String humidity) {
+        this.humidity = humidity;
+    }
+
+    public String getMaximumTemp() {
+        return maximumTemp;
+    }
+
+    public void setMaximumTemp(String maximumTemp) {
+        this.maximumTemp = maximumTemp;
+    }
+
+    public String getMinimumTemp() {
+        return minimumTemp;
+    }
+
+    public void setMinimumTemp(String minimumTemp) {
+        this.minimumTemp = minimumTemp;
+    }
+
+    public String getPressure() {
+        return pressure;
+    }
+
+    public void setPressure(String pressure) {
+        this.pressure = pressure;
+    }
+
+    @Override
+    public String toString() {
+        return "Forecast{" +
+                "time='" + time + '\'' +
+                ", temperature='" + temperature + '\'' +
+                ", iconUrl='" + iconUrl + '\'' +
+                ", windSpeed='" + windSpeed + '\'' +
+                ", windDirection='" + windDirection + '\'' +
+                ", wind='" + wind + '\'' +
+                ", condition='" + condition + '\'' +
+                ", humidity='" + humidity + '\'' +
+                ", maximumTemp='" + maximumTemp + '\'' +
+                ", minimumTemp='" + minimumTemp + '\'' +
+                ", pressure='" + pressure + '\'' +
+                '}';
     }
 }

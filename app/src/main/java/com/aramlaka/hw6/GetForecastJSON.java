@@ -14,12 +14,12 @@ import java.util.ArrayList;
 /**
  * Created by akhil on 10/20/2016.
  */
-public class GetForecast extends AsyncTask<String, Void, ArrayList<Forecast>> {
+public class GetForecastJSON extends AsyncTask<String, Void, ArrayList<Forecast>> {
 
     SetForecast activity;
     ProgressDialog progressDialog;
 
-    public GetForecast(SetForecast activity, ProgressDialog progressDialog) {
+    public GetForecastJSON(SetForecast activity, ProgressDialog progressDialog) {
         this.activity = activity;
         this.progressDialog = progressDialog;
     }
@@ -72,5 +72,7 @@ public class GetForecast extends AsyncTask<String, Void, ArrayList<Forecast>> {
         public void setForecast(ArrayList<Forecast> forecast);
     }
 }
+
+
 
 

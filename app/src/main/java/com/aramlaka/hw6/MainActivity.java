@@ -3,22 +3,20 @@ package com.aramlaka.hw6;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements GetForecast.SetForecast {
+public class MainActivity extends AppCompatActivity implements GetForecastJSON.SetForecast {
 
     public final static String WEATHER_URL_KEY = "weather_url";
     public final static String CITY_URL = "http://api.openweathermap.org/data/2.5/forecast?q=";
@@ -55,16 +53,21 @@ public class MainActivity extends AppCompatActivity implements GetForecast.SetFo
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("debug", "clicky");
+
                 EditText cityEdit = (EditText) findViewById(R.id.cityEdit);
                 EditText countryEdit = (EditText) findViewById(R.id.countryEdit);
 
                 String city = cityEdit.getText().toString();
                 String country = countryEdit.getText().toString();
 
-                Intent intent = new Intent(MainActivity.this, GetForecast.class);
-                intent.putExtra(WEATHER_URL_KEY, CITY_URL +
-                         city + "," + country +
-                        "&appid=" + API_KEY);
+                String url = CITY_URL + city + "," + country +
+                        "&appid=" + API_KEY;
+
+                Log.d("debug", "url=" + url);
+
+                progressDialog.show();
+                new GetForecastJSON(MainActivity.this, progressDialog).execute(url);
             }
         });
     }
@@ -98,7 +101,10 @@ public class MainActivity extends AppCompatActivity implements GetForecast.SetFo
     }
 
     @Override
-    public void setForecast(ArrayList<Forecast> forecast) {
-
+    public void setForecast(ArrayList<Forecast> forecasts) {
+        if (forecasts != null)
+            Log.d("debug", "forecast(0)=" + forecasts.get(0).toString());
+        else
+            Log.d("debug", "ruh roh");
     }
 }
