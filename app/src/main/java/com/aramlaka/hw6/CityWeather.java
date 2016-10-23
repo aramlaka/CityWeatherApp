@@ -41,8 +41,10 @@ public class CityWeather extends AppCompatActivity implements CityDayAdapter.Cit
         }
 
         TextView cityText = (TextView) findViewById(R.id.cityForecastText);
+        TextView dayText = (TextView) findViewById(R.id.dayText);
 
         cityText.setText(city.getCityName() + ", " + city.getCountry());
+        dayText.setText(forecasts.get(0).getDate());
 
         RecyclerView rvDailyCity = (RecyclerView) findViewById(R.id.rvDailyCity);
         CityDayAdapter dayAdapter = new CityDayAdapter(this, forecasts, this);
@@ -82,5 +84,8 @@ public class CityWeather extends AppCompatActivity implements CityDayAdapter.Cit
         CityHourAdapter hourAdapter = new CityHourAdapter(this, forecasts);
         rvHourCity.setAdapter(hourAdapter);
         rvHourCity.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+        TextView dayText = (TextView) findViewById(R.id.dayText);
+        dayText.setText(forecasts.get(1).getDate());
     }
 }

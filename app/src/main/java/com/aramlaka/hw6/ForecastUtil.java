@@ -40,6 +40,8 @@ public class ForecastUtil {
             city.setCityName(cityName);
             city.setCountry(country);
 
+            int indexHolder = 7;
+
             for (int i = 0; i < hourlyForecast.length(); i++) {
                 String time, temperature, iconUrl,
                         windSpeed, windDirection, wind, condition, humidity,
@@ -75,29 +77,40 @@ public class ForecastUtil {
                 // image url example: http://openweathermap.org/img/w/10n.png
                 iconUrl = "http://openweathermap.org/img/w/" + iconUrl + ".png";
 
+                if ((i+1) % 8 > 4) {
+                    finalTime += "PM";
+                } else {
+                    finalTime += "AM";
+                }
+
                 forecasts.add(new Forecast(finalTime, date, temperature, iconUrl,
                         windSpeed, wind, windDirection, condition, humidity,
                         maximumTemp, minimumTemp, pressure));
 
-                if (i == 0) {
+                if ((i+1) % 4 == 0) {
+                    dailyForecast.setTemp(temperature);
+                    dailyForecast.setIconUrl(iconUrl);
                     city.setTemperature(temperature);
                 }
 
-                if ((i+1) % 3 == 1 || i == 2) {
-                    dailyForecast.setDate(date);
-                    dailyForecast.setTemp(temperature);
-                    dailyForecast.setIconUrl(iconUrl);
-                }
+                if (i < 8) {
+                    if (finalTime.equals("9:00PM")) {
+                        dailyForecast.setForecasts(forecasts);
+                        dailyForecast.setDate(date);
+                        dailyForecasts.add(dailyForecast);
 
-                if ((i+1) % 5 == 0) {
+                        forecasts = new ArrayList<>();
+                        dailyForecast = new DailyForecast();
+
+                        indexHolder = i;
+                    }
+                } else if ((i - indexHolder) % 7 == 0) {
                     dailyForecast.setForecasts(forecasts);
+                    dailyForecast.setDate(date);
                     dailyForecasts.add(dailyForecast);
-
-                    Log.d("debug", i + ": " + dailyForecast.toString());
 
                     forecasts = new ArrayList<>();
                     dailyForecast = new DailyForecast();
-
                 }
             }
 
