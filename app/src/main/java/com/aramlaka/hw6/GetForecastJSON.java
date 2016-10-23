@@ -11,9 +11,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-/**
- * Created by akhil on 10/20/2016.
- */
 public class GetForecastJSON extends AsyncTask<String, Void, CityBundle> {
 
     SetForecast activity;

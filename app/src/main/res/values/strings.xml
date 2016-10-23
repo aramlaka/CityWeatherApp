@@ -14,4 +14,5 @@
     <string name="pressureLabel">Pressure</string>
     <string name="humidityLabel">Humidity</string>
     <string name="windLabel">Wind</string>
+    <string name="saveCity">Save City</string>
 </resources>

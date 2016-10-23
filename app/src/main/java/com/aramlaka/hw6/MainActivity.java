@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity implements GetForecastJSON.S
     public final static String CITY_BUNDLE_KEY = "cb_key";
     public static DataManager dm;
     ArrayList<City> cities;
-    ArrayList<Forecast> forecasts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

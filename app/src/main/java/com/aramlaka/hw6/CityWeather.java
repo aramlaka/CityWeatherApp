@@ -26,7 +26,7 @@ public class CityWeather extends AppCompatActivity implements CityDayAdapter.Cit
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_city_weather);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.city_weather_toolbar);
         setSupportActionBar(toolbar);
 
         Bundle extras = getIntent().getExtras();
@@ -60,7 +60,7 @@ public class CityWeather extends AppCompatActivity implements CityDayAdapter.Cit
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_city_weather, menu);
         return true;
     }
 

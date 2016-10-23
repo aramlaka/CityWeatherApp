@@ -3,10 +3,6 @@ package com.aramlaka.hw6;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
- * Created by akhil on 10/21/2016.
- */
-
 public class CityBundle implements Serializable{
     private City city;
     private ArrayList<DailyForecast> forecasts;

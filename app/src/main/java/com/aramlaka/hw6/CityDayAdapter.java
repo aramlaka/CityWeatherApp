@@ -14,10 +14,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-/**
- * Created by akhil on 10/21/2016.
- */
-
 public class CityDayAdapter extends RecyclerView.Adapter<CityDayAdapter.ViewHolder>{
 
     private ArrayList<DailyForecast> mForecasts;

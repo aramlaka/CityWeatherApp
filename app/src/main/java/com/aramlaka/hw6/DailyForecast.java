@@ -3,11 +3,8 @@ package com.aramlaka.hw6;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
- * Created by akhil on 10/22/2016.
- */
-
 public class DailyForecast implements Serializable {
+
     private ArrayList<Forecast> forecasts;
     private String date;
     private String iconUrl;

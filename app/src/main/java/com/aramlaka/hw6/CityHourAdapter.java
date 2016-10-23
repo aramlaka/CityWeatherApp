@@ -12,11 +12,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-/**
- * Created by akhil on 10/21/2016.
- */
-
 public class CityHourAdapter extends RecyclerView.Adapter<CityHourAdapter.ViewHolder>{
+
     private ArrayList<Forecast> mForecasts;
     private Context mContext;
 

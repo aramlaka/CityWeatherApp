@@ -1,22 +1,16 @@
 package com.aramlaka.hw6;
 
-import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-/**
- * Created by akhil on 10/20/2016.
- */
 public class ForecastUtil {
+
     public static CityBundle parseJSON(String jsonString) {
         ArrayList<DailyForecast> dailyForecasts = null;
         City city = null;
@@ -104,7 +98,7 @@ public class ForecastUtil {
 
                         indexHolder = i;
                     }
-                } else if ((i - indexHolder) % 7 == 0) {
+                } else if ((i - indexHolder) % 8 == 0) {
                     dailyForecast.setForecasts(forecasts);
                     dailyForecast.setDate(date);
                     dailyForecasts.add(dailyForecast);

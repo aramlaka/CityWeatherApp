@@ -10,6 +10,7 @@ import java.util.ArrayList;
  */
 
 public class DataManager {
+
     Context mContext;
     DatabaseHelper dbOpenHelper;
     SQLiteDatabase db;

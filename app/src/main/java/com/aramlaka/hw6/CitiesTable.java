@@ -3,9 +3,6 @@ package com.aramlaka.hw6;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
-/**
- * Created by akhil on 10/20/2016.
- */
 public class CitiesTable {
     public static final String TABLE_NAME = "cities";
     public static final String CITY_ID = "id";
