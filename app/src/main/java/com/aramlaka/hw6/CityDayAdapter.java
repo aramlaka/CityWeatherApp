@@ -20,11 +20,11 @@ import java.util.ArrayList;
 
 public class CityDayAdapter extends RecyclerView.Adapter<CityDayAdapter.ViewHolder>{
 
-    private ArrayList<Forecast> mForecasts;
+    private ArrayList<DailyForecast> mForecasts;
     private Context mContext;
     private CityHourSet mCs;
 
-    public CityDayAdapter(Context context, ArrayList<Forecast> forecasts, CityHourSet cs) {
+    public CityDayAdapter(Context context, ArrayList<DailyForecast> forecasts, CityHourSet cs) {
         mContext = context;
         mForecasts = forecasts;
         mCs = cs;
@@ -55,25 +55,24 @@ public class CityDayAdapter extends RecyclerView.Adapter<CityDayAdapter.ViewHold
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View cityView = inflater.inflate(R.layout.item_city_day, parent, false);
-        CityDayAdapter.ViewHolder viewHolder = new CityDayAdapter.ViewHolder(cityView);
 
-        return viewHolder;
+        return new CityDayAdapter.ViewHolder(cityView);
     }
 
     @Override
     public void onBindViewHolder(CityDayAdapter.ViewHolder holder, int position) {
-        Forecast forecast = mForecasts.get(position);
-;
+        DailyForecast dailyForecast = mForecasts.get(position);
+
         TextView tempText = holder.temperatureText;
         TextView dateText = holder.dateText;
         ImageView forecastIcon = holder.forecastIcon;
         RelativeLayout rl = holder.rl;
 
-        tempText.setText(forecast.getTemperature() + (char) 0x00B0 + " C");
-        dateText.setText(forecast.getTime());
-        Picasso.with(mContext).load(forecast.getIconUrl()).into(forecastIcon);
+        tempText.setText(dailyForecast.getTemp() + (char) 0x00B0 + " C");
+        dateText.setText(dailyForecast.getDate());
+        Picasso.with(mContext).load(dailyForecast.getIconUrl()).into(forecastIcon);
 
-        rl.setOnClickListener(new DayCityOnClick(forecast, mCs));
+        rl.setOnClickListener(new DayCityOnClick(dailyForecast.getForecasts(), mCs));
     }
 
     @Override
@@ -82,21 +81,21 @@ public class CityDayAdapter extends RecyclerView.Adapter<CityDayAdapter.ViewHold
     }
 
     public class DayCityOnClick implements View.OnClickListener {
-        private Forecast forecast;
+        private ArrayList<Forecast> forecasts;
         private CityHourSet cs;
 
-        public DayCityOnClick(Forecast forecast, CityHourSet cs) {
-            this.forecast = forecast;
+        public DayCityOnClick(ArrayList<Forecast> forecasts, CityHourSet cs) {
+            this.forecasts = forecasts;
             this.cs = cs;
         }
 
         @Override
         public void onClick(View view) {
-            cs.setHourAdapter(forecast);
+            cs.setHourAdapter(forecasts);
         }
     }
 
     public interface CityHourSet {
-        public void setHourAdapter(Forecast forecast);
+        public void setHourAdapter(ArrayList<Forecast> forecasts);
     }
 }

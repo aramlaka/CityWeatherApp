@@ -18,7 +18,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements GetForecastJSON.SetForecast {
 
-    public final static String WEATHER_URL_KEY = "weather_url";
     public final static String CITY_URL = "http://api.openweathermap.org/data/2.5/forecast?q=";
     private final static String API_KEY = "4012b350504085a7a6f9ffacb1b97d97";
     public final static String CITY_BUNDLE_KEY = "cb_key";
@@ -34,7 +33,8 @@ public class MainActivity extends AppCompatActivity implements GetForecastJSON.S
         setSupportActionBar(toolbar);
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Fetching weather...");
+        progressDialog.setTitle("Fetching Weather");
+        progressDialog.setMessage("Loading...");
 
         dm = new DataManager(this);
 
@@ -54,18 +54,13 @@ public class MainActivity extends AppCompatActivity implements GetForecastJSON.S
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("debug", "clicky");
-
                 EditText cityEdit = (EditText) findViewById(R.id.cityEdit);
                 EditText countryEdit = (EditText) findViewById(R.id.countryEdit);
 
                 String city = cityEdit.getText().toString();
                 String country = countryEdit.getText().toString();
-
                 String url = CITY_URL + city + "," + country +
                         "&appid=" + API_KEY;
-
-                Log.d("debug", "url=" + url);
 
                 progressDialog.show();
                 new GetForecastJSON(MainActivity.this, progressDialog).execute(url);

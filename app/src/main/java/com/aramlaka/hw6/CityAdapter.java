@@ -52,9 +52,8 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         View cityView = inflater.inflate(R.layout.item_city, parent, false);
-        ViewHolder viewHolder = new ViewHolder(cityView);
 
-        return viewHolder;
+        return new ViewHolder(cityView);
     }
 
     @Override

@@ -9,9 +9,9 @@ import java.util.ArrayList;
 
 public class CityBundle implements Serializable{
     private City city;
-    private ArrayList<Forecast> forecasts;
+    private ArrayList<DailyForecast> forecasts;
 
-    public CityBundle(City city, ArrayList<Forecast> forecasts) {
+    public CityBundle(City city, ArrayList<DailyForecast> forecasts) {
         this.city = city;
         this.forecasts = forecasts;
     }
@@ -20,7 +20,7 @@ public class CityBundle implements Serializable{
         return city;
     }
 
-    public ArrayList<Forecast> getForecasts() {
+    public ArrayList<DailyForecast> getForecasts() {
         return forecasts;
     }
 }

@@ -14,11 +14,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class CityWeather extends AppCompatActivity implements CityDayAdapter.CityHourSet {
 
-    private ArrayList<Forecast> forecasts;
+    private ArrayList<DailyForecast> forecasts;
     private City city;
 
     @Override
@@ -49,7 +50,7 @@ public class CityWeather extends AppCompatActivity implements CityDayAdapter.Cit
         rvDailyCity.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
         RecyclerView rvHourCity = (RecyclerView) findViewById(R.id.rvHourlyCity);
-        CityHourAdapter hourAdapter = new CityHourAdapter(this, forecasts.get(0));
+        CityHourAdapter hourAdapter = new CityHourAdapter(this, forecasts.get(0).getForecasts());
         rvHourCity.setAdapter(hourAdapter);
         rvHourCity.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
     }
@@ -76,9 +77,9 @@ public class CityWeather extends AppCompatActivity implements CityDayAdapter.Cit
         return super.onOptionsItemSelected(item);
     }
 
-    public void setHourAdapter(Forecast forecast) {
+    public void setHourAdapter(ArrayList<Forecast> forecasts) {
         RecyclerView rvHourCity = (RecyclerView) findViewById(R.id.rvHourlyCity);
-        CityHourAdapter hourAdapter = new CityHourAdapter(this, forecast);
+        CityHourAdapter hourAdapter = new CityHourAdapter(this, forecasts);
         rvHourCity.setAdapter(hourAdapter);
         rvHourCity.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
     }

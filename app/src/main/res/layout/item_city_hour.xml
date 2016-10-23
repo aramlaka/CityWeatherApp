@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="260dp">
+    android:layout_height="260dp"
+    android:background="@drawable/card_border">
 
     <TextView
         android:text="6:00"
@@ -10,17 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="11dp"
-        android:id="@+id/cityHourText" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView2"
-        android:layout_toRightOf="@+id/cityHourText"
-        android:layout_toEndOf="@+id/cityHourText"
-        android:id="@+id/tempText" />
+        android:id="@+id/cityHourText"
+        android:layout_marginTop="10dp" />
 
     <TextView
         android:text="@string/pressureLabel"
@@ -58,7 +50,7 @@
     <ImageView
         android:layout_width="100dp"
         app:srcCompat="@android:color/black"
-        android:id="@+id/imageView"
+        android:id="@+id/forecastIcon"
         android:layout_height="100dp"
         android:layout_below="@+id/cityHourText"
         android:layout_centerHorizontal="true" />
@@ -83,17 +75,6 @@
         android:layout_alignBottom="@+id/textView9"
         android:layout_alignLeft="@+id/pressureText"
         android:layout_alignStart="@+id/pressureText"
-        />
-
-    <TextView
-        android:text="@string/temperatureLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2"
-        android:layout_marginTop="16dp"
-        android:layout_below="@+id/imageView"
-        android:layout_toLeftOf="@+id/cityHourText"
-        android:textDirection="rtl"
         />
 
     <TextView
@@ -126,5 +107,29 @@
         android:layout_above="@+id/textView7"
         android:layout_alignLeft="@+id/tempText"
         android:layout_alignStart="@+id/tempText" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tempText"
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignLeft="@+id/cityHourText"
+        android:layout_alignStart="@+id/cityHourText"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp" />
+
+    <TextView
+        android:text="@string/temperatureLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:textDirection="rtl"
+        android:layout_below="@+id/forecastIcon"
+        android:layout_toLeftOf="@+id/cityHourText"
+        android:layout_toStartOf="@+id/cityHourText"
+        android:layout_marginRight="14dp"
+        android:layout_marginEnd="14dp" />
 
 </RelativeLayout>

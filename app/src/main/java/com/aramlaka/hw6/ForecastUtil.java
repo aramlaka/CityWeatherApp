@@ -1,5 +1,7 @@
 package com.aramlaka.hw6;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,22 +18,24 @@ import java.util.Date;
  */
 public class ForecastUtil {
     public static CityBundle parseJSON(String jsonString) {
-        ArrayList<Forecast> forecasts = null;
+        ArrayList<DailyForecast> dailyForecasts = null;
         City city = null;
 
         try {
-            forecasts = new ArrayList<>();
+            dailyForecasts = new ArrayList<>();
+            DailyForecast dailyForecast = new DailyForecast();
+            ArrayList<Forecast> forecasts = new ArrayList<>();
+            city = new City();
 
             JSONObject weatherJSONObj = new JSONObject(jsonString);
             JSONObject cityJson = weatherJSONObj.getJSONObject("city");
             JSONArray hourlyForecast = weatherJSONObj.getJSONArray("list");
 
-            String id, cityName, country, cityTemperature;
+            String id, cityName, country;
             id = cityJson.getString("id");
             cityName = cityJson.getString("name");
             country = cityJson.getString("country");
 
-            city = new City();
             city.set_id(id);
             city.setCityName(cityName);
             city.setCountry(country);
@@ -71,16 +75,33 @@ public class ForecastUtil {
                 // image url example: http://openweathermap.org/img/w/10n.png
                 iconUrl = "http://openweathermap.org/img/w/" + iconUrl + ".png";
 
-                forecasts.add(new Forecast(finalTime, temperature, iconUrl,
+                forecasts.add(new Forecast(finalTime, date, temperature, iconUrl,
                         windSpeed, wind, windDirection, condition, humidity,
                         maximumTemp, minimumTemp, pressure));
 
                 if (i == 0) {
                     city.setTemperature(temperature);
                 }
+
+                if ((i+1) % 3 == 1 || i == 2) {
+                    dailyForecast.setDate(date);
+                    dailyForecast.setTemp(temperature);
+                    dailyForecast.setIconUrl(iconUrl);
+                }
+
+                if ((i+1) % 5 == 0) {
+                    dailyForecast.setForecasts(forecasts);
+                    dailyForecasts.add(dailyForecast);
+
+                    Log.d("debug", i + ": " + dailyForecast.toString());
+
+                    forecasts = new ArrayList<>();
+                    dailyForecast = new DailyForecast();
+
+                }
             }
 
-            return new CityBundle(city, forecasts);
+            return new CityBundle(city, dailyForecasts);
         } catch (JSONException e) {
             e.printStackTrace();
         } catch (ParseException e) {

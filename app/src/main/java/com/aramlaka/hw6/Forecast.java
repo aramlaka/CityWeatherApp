@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 public class Forecast implements Serializable{
     private String time;
+    private String date;
     private String temperature;
     private String iconUrl;
     private String windSpeed;
@@ -22,10 +23,11 @@ public class Forecast implements Serializable{
     public Forecast() {
     }
 
-    public Forecast(String time, String temperature, String iconUrl, String windSpeed,
-                    String windDirection, String wind, String condition, String humidity,
-                    String maximumTemp, String minimumTemp, String pressure) {
+    public Forecast(String time, String date, String temperature, String iconUrl,
+                    String windSpeed, String windDirection, String wind, String condition,
+                    String humidity, String maximumTemp, String minimumTemp, String pressure) {
         this.time = time;
+        this.date = date;
         this.temperature = temperature;
         this.iconUrl = iconUrl;
         this.windSpeed = windSpeed;
@@ -44,6 +46,14 @@ public class Forecast implements Serializable{
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getTemperature() {
