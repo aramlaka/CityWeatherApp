@@ -1,26 +1,26 @@
 package com.aramlaka.hw6;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class CityWeather extends AppCompatActivity implements CityDayAdapter.CityHourSet {
+public class CityWeatherActivity extends AppCompatActivity implements CityDayAdapter.CityHourSet {
 
     private ArrayList<DailyForecast> forecasts;
     private City city;
+    private SaveCityActivity scActivity;
+
+    public CityWeatherActivity(SaveCityActivity saveCity) {
+        this.scActivity = saveCity;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +76,16 @@ public class CityWeather extends AppCompatActivity implements CityDayAdapter.Cit
             return true;
         }
 
+        if (id == R.id.action_save) {
+            if (scActivity.saveCity(city)) {
+                Toast.makeText(this, city.getCityName() + " has been saved.", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, city.getCityName() + " has been updated.", Toast.LENGTH_SHORT).show();
+            }
+
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -87,5 +97,9 @@ public class CityWeather extends AppCompatActivity implements CityDayAdapter.Cit
 
         TextView dayText = (TextView) findViewById(R.id.dayText);
         dayText.setText(forecasts.get(1).getDate());
+    }
+
+    public interface SaveCityActivity {
+        public boolean saveCity(City city);
     }
 }
